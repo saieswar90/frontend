@@ -1,0 +1,22 @@
+<div *ngIf="showData">
+  <h3>Soil Moisture Data</h3>
+
+  <table *ngIf="soilMoistureData.length > 0">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Soil Moisture</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of soilMoistureData">
+        <td>{{ data.timestamp }}</td>
+        <td>{{ data.soilMoisture }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="soilMoistureData.length === 0">No data available.</p>
+
+  <app-soil-moisture-chart [soilMoistureData]="soilMoistureData"></app-soil-moisture-chart>
+</div>

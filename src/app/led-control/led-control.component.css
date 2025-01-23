@@ -1,0 +1,571 @@
+.container {
+  display: flex;
+  height: 100vh;
+  background-color: #282c34;
+  color: rgb(245, 59, 17);
+  justify-content: flex-start;
+  background-image: url('https://static.vecteezy.com/system/resources/previews/007/449/070/non_2x/agriculture-plant-seedling-growing-step-concept-with-mountain-and-sunrise-background-free-photo.jpg');
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px;
+  background-size: cover; /* Ensures the image covers the whole background */
+  background-position: center center; /* Centers the background image */
+  background-repeat: no-repeat; /* Prevents repeating the image */
+  background-attachment: fixed; /* Keeps the background image fixed during scrolling */
+  /* White text to contrast with the background */
+  height: 100vh; /* Make sure the container fills the entire viewport height */
+}
+
+/* Styling for the motion status button */
+.motion-status-button {
+  font-size: 1.2em;
+  padding: 12px 24px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 25px; /* Button shaped with rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s ease;
+  display: inline-block;
+  width: auto;
+}
+
+/* Green glow for motion detected */
+.motion-detected {
+  background-color: green;
+  color: white;
+  text-shadow: 0 0 15px rgba(0, 255, 0, 0.8), 0 0 30px rgba(0, 255, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* Red glow for no motion */
+.no-motion {
+  background-color: red;
+  color: white;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Styling for the motion status button on hover */
+.motion-status-button:hover {
+  transform: scale(1.05);
+}
+
+/* Styling for the motion status button when clicked */
+.motion-status-button:active {
+  background-color: #333;
+  transform: scale(1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 0px; /* 10px from the top of the viewport */
+  left: 10px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  background-color: #e3e9f0;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: buttonFadeInUp 1s ease-out forwards;
+  animation-delay: 0.6s; /* Slight delay to appear after the text */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 30px; /* Increase font size for better visibility */
+  color: #18e745; /* Arrow color */
+  z-index: 1000; /* Ensure the button is above other elements */
+}
+
+/* Sidebar for navigation */
+.sidebar {
+  width: 300px;
+  background-color: #a6f496;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  position: absolute;
+  left: -300px; /* Initially off-screen */
+  top: 0;
+  height: 100%;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+/* When the sidebar is open, position it correctly */
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar h1 {
+  font-size: 1.8em;
+  color: #fff;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Styling for the sidebar menu items */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  font-size: 1.2rem;
+  color: white;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+/* Neon Glow Effect on Sidebar Menu Items */
+.sidebar ul li:hover {
+  background-color: #e74c3c; /* Deeper red on hover */
+  transform: scale(1.05); /* Subtle scale-up on hover */
+  box-shadow: 0 0 20px rgba(231, 76, 60, 0.8); /* Neon glow effect */
+  animation: neonGlow 1s ease-out infinite alternate; /* Neon glow animation */
+}
+
+/* Keyframe for Neon Glow Animation */
+@keyframes neonGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.8);
+  }
+}
+
+/* Main content area */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+  position: relative;
+  height: 100%;
+}
+
+.sidebar.open ~ .main-content {
+  margin-left: 250px;
+}
+
+/* New Climate Measures Section */
+.climate-box {
+  background-color: #0b77e3;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure proper layout for the page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+/* Ensure proper layout for the page */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+/* Use flexbox for the body to allow content to fill the screen */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main content area (ensures it takes all available space before footer) */
+.main-content {
+  flex: 1; /* This makes the main content take up the remaining space */
+  padding-bottom: 100px; /* Space for footer */
+}
+
+/* For the climate-measures section */
+.climate-measures {
+  margin: 20px auto; /* Center the climate-measures box */
+  padding: 50px 20px;
+  background-color: transparent; /* Removed background color */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 150px;
+  margin-left: 500px;
+  width: 100%;
+  max-width: 100%; /* Adjust max-width to 100% */
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of the cards */
+  justify-content: center; /* Centers the cards */
+  gap: 20px; /* Space between cards */
+  padding-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+
+/* Ensure space for footer */
+footer {
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* To avoid overlap with footer */
+.main-content {
+  margin-bottom: 100px; /* Space to avoid footer overlapping */
+}
+.lbutton{
+  position: fixed;
+  top: 0px; /* 10px from the top of the viewport */
+  left: 10px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  background-color: #e3e9f0;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: buttonFadeInUp 1s ease-out forwards;
+  animation-delay: 0.6s; /* Slight delay to appear after the text */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  font-size: 30px; /* Increase font size for better visibility */
+  color: #a2deea; /* Arrow color */
+  z-index: 1000; 
+  top:62%;
+  left:46.5%;
+
+  font-size: 1.2em;
+  padding: 12px 24px;
+  margin-top: 300px;
+  margin: 10px 0;
+  border: none;
+  background-color: #9cc7e3;
+  color: rgb(5, 15, 19);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+/* Button styling */
+.button {
+  font-size: 1.2em;
+  padding: 12px 24px;
+  margin: 10px 0;
+  border: none;
+  background-color: #130182;
+  color: rgb(5, 15, 19);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Initial shadow */
+}
+
+/* Neon Glow Effect on Hover */
+.button:hover {
+  background-color: #4589a0; /* Slightly darker shade of green */
+  transform: scale(1.05); /* Slight scale-up on hover */
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); /* Neon green glow */
+  animation: neonGlow 1s ease-out infinite alternate; /* Neon glow animation */
+}
+
+/* Keyframe for Neon Glow Animation */
+@keyframes neonGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(130, 223, 232, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+  }
+}
+
+/* Button Active Effect */
+.button:active {
+  background-color: #45a049;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5); /* Slight darker shadow on active */
+  transform: scale(1); /* Return to normal size */
+}
+
+/* Footer Section */
+footer {
+  position: relative;
+  padding: 20px 0;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  margin-top: auto; /* Ensures footer stays at the bottom if content is less */
+  box-sizing: border-box;
+}
+
+/* Welcome section container */
+.welcome-section {
+  position: absolute; /* Use absolute positioning */
+  top: 25%; /* Position from the top at 50% of the viewport height */
+  left: 35%; /* Position from the left at 50% of the viewport width */
+  transform: translate(-50%, -50%); /* Offset the element by its own width and height */
+  text-align: center;
+  padding: 50px 20px;
+  background-color: transparent;
+ 
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0; /* Start with invisible */
+  transform: scale(0.8); /* Slightly scaled down */
+  animation: fadeInScaleUp 1.5s ease-out forwards; /* Apply animation */
+  width: 100%;
+  max-width: 500px; /* Set a max-width for neatness */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  display: flex; /* Flexbox to center its content */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center content vertically inside */
+}
+
+/* Heading animation (slide in from top) */
+.welcome-section h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  animation: slideInFromTop 1.5s ease-out forwards;
+  animation-delay: 0.2s; /* Slight delay to start after the container */
+}
+
+/* Text (paragraph) animation (slide in from bottom) */
+.welcome-section p {
+  font-size: 1.2rem;
+  color: #161819;
+  animation: slideInFromBottom 1.5s ease-out forwards;
+  animation-delay: 0.4s; /* Slight delay to start after the heading */
+}
+
+/* Button animation (scale up slightly and change color on hover) */
+.welcome-section .button {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: buttonFadeInUp 1s ease-out forwards;
+  animation-delay: 0.6s; /* Slight delay to appear after the text */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.welcome-section .button:hover {
+  transform: translateY(-3px);
+  background-color: #0056b3;
+}
+
+/* Keyframe animations */
+
+/* Fade-in and scale-up the whole welcome section */
+@keyframes fadeInScaleUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Slide in from the top for the heading */
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide in from the bottom for the paragraph */
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button fade-in and slide-up */
+@keyframes buttonFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/* Styling for the whole climate measures section */
+
+/* Title styling */.climate-measures {
+  margin: 20px auto; /* Center the climate-measures box */
+  padding: 50px 20px;
+  background-color: transparent; /* Removed background color */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 150px;
+  margin-left: 500px;
+  width: 100%;
+  max-width: 100%; /* Adjust max-width to 100% */
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping of the cards */
+  justify-content: center; /* Centers the cards */
+  gap: 20px; /* Space between cards */
+  overflow: auto; /* Allow scrolling if content overflows */
+  max-height: 80vh; /* Ensure the section does not take too much space on larger screens */
+  padding-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Styling for each measure card */
+.measure-card {
+  background-color: #ffffff; /* White background for each card */
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  transition: transform 0.3s ease;
+  flex-direction: column; /* Stack the content vertically */
+  width: calc(33% - 20px); /* Each card takes 33% of the width minus margin */
+  height: auto; /* Set height to auto to adjust based on content */
+  min-width: 200px; /* Prevent cards from becoming too narrow */
+}
+
+/* On hover, scale up the measure card */
+.measure-card:hover {
+  transform: scale(1.05);
+}
+
+/* Styling for the value text */
+.measure-card .value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10px;
+}
+
+/* Styling for the icon */
+.measure-card .icon {
+  font-size: 24px;
+}
+
+/* Styling for the measure name text */
+.measure-card .measure-name {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+/* Specific styling for icons */
+.measure-card .icon {
+  color: #ff6f61; /* Icon color */
+}
+
+/* Adjust font sizes for values and icons */
+.measure-card p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  /* For tablets and below, reduce padding and font sizes */
+  .climate-measures {
+    padding: 15px;
+  }
+
+  .climate-measures h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .measure-card {
+    padding: 10px;
+    margin: 8px 0;
+    flex-direction: column; /* Stack the content vertically */
+    align-items: flex-start; /* Align items to the left */
+    width: calc(50% - 20px); /* 50% width on smaller screens */
+  }
+
+  .measure-card .value {
+    font-size: 16px;
+    margin-right: 0;
+  }
+
+  .measure-card .icon {
+    font-size: 20px;
+  }
+
+  .measure-card .measure-name {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* For small mobile screens, make further adjustments */
+  .measure-card {
+    padding: 8px;
+    margin: 5px 0;
+    width: 100%; /* Full width on small screens */
+  }
+
+  .measure-card .value {
+    font-size: 14px;
+  }
+
+  .measure-card .icon {
+    font-size: 18px;
+  }
+
+  .measure-card .measure-name {
+    font-size: 10px;
+  }
+}

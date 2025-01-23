@@ -1,0 +1,153 @@
+<div class="container">
+  <!-- Welcome Section -->
+  <div *ngIf="showWelcomeContent" class="welcome-section">
+    <h1>Welcome to Smart Climate Control!</h1>
+    <p>Get insights into weather patterns, disease predictions, and more.</p>
+    <br>
+    
+  </div>
+  <br>
+  <div *ngIf="showWelcomeContent">
+    <button  class="lbutton" (click)="startJourney()" >Get Started</button>
+    </div>
+  
+
+  <!-- Sidebar Toggle Button (always visible) -->
+  <div class="sidebar-toggle" (click)="toggleSidebar()">
+    <span>{{ sidebarOpen ? '&#8594;' : '&#8592;' }}</span>
+  </div>
+  
+  <!-- Sidebar -->
+  <div class="sidebar" [class.open]="sidebarOpen">
+    <br>
+    <h1>--------------<br>LED Control Panel<br>--------------</h1>
+    <button (click)="navigateToLEDControl()" class="button">LED Control</button>
+    <button (click)="toggleTemperatureData()" class="button">Temperature and Humidity</button>
+    <button (click)="toggleSoilMoistureData()" class="button">Soil Moisture Data</button>
+    <button (click)="toggleMotionData()" class="button">Motion Detection</button>
+    <button (click)="navigateToPotatoModel()" class="button">Potato Model</button>
+    <button (click)="toggleClimateMeasures()" class="button">Climate Measures</button>
+  </div>
+  <!-- Climate Measures Section -->
+  <div *ngIf="showClimateMeasures" #climateDataSection class="climate-measures">
+  <h2>Climate Measures</h2>
+  
+  <!-- Displaying Average Temperature -->
+  <div class="measure-card">
+    <p class="value">{{ climateAvgTemp }}°C <span class="icon">🌡️</span></p>
+    <p class="measure-name">Average Temperature</p>
+  </div>
+  
+  <!-- Displaying Average Humidity -->
+  <div class="measure-card">
+    <p class="value">{{ climateAvgHumidity }}% <span class="icon">💧</span></p>
+    <p class="measure-name">Average Humidity</p>
+  </div>
+  
+  <!-- Displaying Average Dew Point -->
+  <div class="measure-card">
+    <p class="value">{{ climateAvgDewPoint }}°C <span class="icon">🌫️</span></p>
+    <p class="measure-name">Average Dew Point</p>
+  </div>
+  
+  <!-- Displaying Vapor Pressure -->
+  <div class="measure-card">
+    <p class="value">{{ vaporPressure | number:'1.2-2' }} kPa <span class="icon">💨</span></p>
+    <p class="measure-name">Vapor Pressure</p>
+  </div>
+  
+  <!-- Displaying Vapor Pressure Deficit (VPD) -->
+  <div class="measure-card">
+    <p class="value">{{ vpd | number:'1.2-2' }} kPa <span class="icon">💧</span></p>
+    <p class="measure-name">Vapor Pressure Deficit (VPD)</p>
+  </div>
+  
+  <!-- Displaying Heat Index -->
+  <div class="measure-card">
+    <p class="value">{{ heatIndex | number:'1.2-2' }}°C <span class="icon">🔥</span></p>
+    <p class="measure-name">Heat Index</p>
+  </div>
+  
+  <!-- Displaying Dew Point -->
+  <div class="measure-card">
+    <p class="value">{{ dewPoint }}°C <span class="icon">🌫️</span></p>
+    <p class="measure-name">Dew Point</p>
+  </div>
+  
+  <!-- Displaying Crop Water Stress Index (CWSI) -->
+  <div class="measure-card">
+    <p class="value">{{ cropWaterStressIndex | number:'1.2-2' }} <span class="icon">💧</span></p>
+    <p class="measure-name">Crop Water Stress Index</p>
+  </div>
+  
+  <!-- Displaying Chill Hours -->
+  <div class="measure-card">
+    <p class="value">{{ chillHours | number:'1.0-0' }} hours <span class="icon">❄️</span></p>
+    <p class="measure-name">Chill Hours</p>
+  </div>
+  
+  <!-- Displaying Growing Degree Days (GDD) -->
+  <div class="measure-card">
+    <p class="value">{{ growingDegreeDays | number:'1.0-0' }} GDD <span class="icon">🌱</span></p>
+    <p class="measure-name">Growing Degree Days (GDD)</p>
+  </div>
+  
+  <!-- Displaying Evapotranspiration -->
+  <div class="measure-card">
+    <p class="value">{{ evapotranspiration | number:'1.2-2' }} mm/day <span class="icon">🌞</span></p>
+    <p class="measure-name">Evapotranspiration</p>
+  </div>
+  
+  <!-- Displaying Potential Evapotranspiration -->
+  <div class="measure-card">
+    <p class="value">{{ potentialEvapotranspiration | number:'1.2-2' }} mm/day <span class="icon">💧</span></p>
+    <p class="measure-name">Potential Evapotranspiration</p>
+  </div>
+  
+  <!-- Displaying Moisture Stress Index -->
+  <div class="measure-card">
+    <p class="value">{{ moistureStressIndex | number:'1.2-2' }} <span class="icon">💦</span></p>
+    <p class="measure-name">Moisture Stress Index</p>
+  </div>
+</div>
+
+  
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Motion Data Section -->
+    <div *ngIf="showMotionData" #motionDataSection class="motion-box">
+      <h2>Motion Status Visualization</h2>
+      <div class="motion-timeline">
+        <div *ngFor="let motion of motionData">
+          <div class="motion-timeline-item">
+            <div [class]="motion.motion === 'MOTION_DETECTED' ? 'motion-detected' : 'no-motion'" class="motion-timeline-circle"></div>
+            <button [ngClass]="motion.motion === 'MOTION_DETECTED' ? 'motion-detected' : 'no-motion'" class="motion-status-button">
+              {{ motion.timestamp }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <button (click)="printMotionData()" class="button">Print Motion Data</button>
+    </div>
+
+    <!-- Temperature Data Section -->
+    <div *ngIf="showTemperatureData" #temperatureDataSection class="chart-container">
+      <app-temperature-data [showData]="showTemperatureData"></app-temperature-data>
+      <button (click)="printTemperatureData()" class="button">Print Temperature Data</button>
+    </div>
+
+    <!-- Soil Moisture Data Section -->
+    <div *ngIf="showSoilMoistureData" #soilMoistureDataSection class="table-container">
+      <app-soil-moisture-data [showData]="showSoilMoistureData"></app-soil-moisture-data>
+      <button (click)="printSoilMoistureData()" class="button">Print Soil Moisture Data</button>
+    </div>
+
+    <!-- Climate Measures Section -->
+  </div>
+</div>
+
+<footer class="footer">
+  <p class="footer-text">Get Started with Our Control Panel</p>
+  <p class="footer-copyright">© 2025 Your Company Name. All Rights Reserved.</p>
+</footer>

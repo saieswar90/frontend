@@ -1,0 +1,24 @@
+<div *ngIf="showData">
+  <h3>Temperature and Humidity Data</h3>
+  
+  <table *ngIf="temperatureData.length > 0">
+    <thead>
+      <tr>
+        <th>Timestamp</th>
+        <th>Temperature</th>
+        <th>Humidity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of temperatureData">
+        <td>{{ data.timestamp }}</td>
+        <td>{{ data.temperature }}</td>
+        <td>{{ data.humidity }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="temperatureData.length === 0">No data available.</p>
+
+  <app-temperature-chart [temperatureData]="temperatureData"></app-temperature-chart>
+</div>

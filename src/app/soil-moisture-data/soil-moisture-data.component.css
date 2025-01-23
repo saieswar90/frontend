@@ -1,0 +1,50 @@
+/* Container styling */
+.container {
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Default styling for the table */
+table {
+  width: 80%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+/* Table headers and cells */
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.button {
+  font-size: 1.2em;
+  padding: 12px 24px;
+  margin: 10px;
+  border: none;
+  background-color: #4CAF50; /* Default solid color */
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.button:active {
+  background-image: url('https://wallpapercave.com/wp/wp9212652.jpg'); /* Background for Soil Moisture */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+}
