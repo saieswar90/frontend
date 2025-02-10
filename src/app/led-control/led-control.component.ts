@@ -226,6 +226,9 @@ export class LedControlComponent implements OnInit {
   navigateToPotatoModel() {
     window.open('https://278f-61-1-167-254.ngrok-free.app/', '_blank');
   }
+  toggleHelp(){
+    window.open('https://89ed-2401-4900-4e20-bec4-895a-d9c0-5806-29.ngrok-free.app ','_blank' )
+  }
 
   captureAndPrint(sectionId: string) {}
 

@@ -1,15 +1,6 @@
 <div class="container">
   <!-- Welcome Section -->
-  <div *ngIf="showWelcomeContent" class="welcome-section">
-    <h1>Welcome to Smart Climate Control!</h1>
-    <p>Get insights into weather patterns, disease predictions, and more.</p>
-    <br>
-    
-  </div>
-  <br>
-  <div *ngIf="showWelcomeContent">
-    <button  class="lbutton" (click)="startJourney()" >Get Started</button>
-    </div>
+  
   
 
   <!-- Sidebar Toggle Button (always visible) -->
@@ -27,6 +18,7 @@
     <button (click)="toggleMotionData()" class="button">Motion Detection</button>
     <button (click)="navigateToPotatoModel()" class="button">Potato Model</button>
     <button (click)="toggleClimateMeasures()" class="button">Climate Measures</button>
+    <button (click)="toggleHelp()" class="button">Help</button>
   </div>
   <!-- Climate Measures Section -->
   <div *ngIf="showClimateMeasures" #climateDataSection class="climate-measures">

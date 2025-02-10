@@ -84,7 +84,7 @@
 /* Sidebar for navigation */
 .sidebar {
   width: 300px;
-  background-color: #a6f496;
+  background-color: #d5dad4;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -205,19 +205,24 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-top: 150px;
-  margin-left: 500px;
+  margin-left: 300px;
   width: 100%;
   max-width: 100%; /* Adjust max-width to 100% */
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap; /* Allows wrapping of the cards */
   justify-content: center; /* Centers the cards */
-  gap: 20px; /* Space between cards */
+  gap: 20px; 
+  overflow: auto;/* Space between cards */
+  max-height: 80vh;
   padding-bottom: 30px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  flex-direction: row;
 }
+
+
 
 
 /* Ensure space for footer */
@@ -276,7 +281,7 @@ footer {
   padding: 12px 24px;
   margin: 10px 0;
   border: none;
-  background-color: #130182;
+  background-color: #f2ad0d;
   color: rgb(5, 15, 19);
   cursor: pointer;
   border-radius: 8px;
@@ -288,7 +293,7 @@ footer {
 .button:hover {
   background-color: #4589a0; /* Slightly darker shade of green */
   transform: scale(1.05); /* Slight scale-up on hover */
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); /* Neon green glow */
+  box-shadow: 0 0 20px rgba(188, 194, 188, 0.8); /* Neon green glow */
   animation: neonGlow 1s ease-out infinite alternate; /* Neon glow animation */
 }
 
@@ -321,6 +326,7 @@ footer {
   margin-top: auto; /* Ensures footer stays at the bottom if content is less */
   box-sizing: border-box;
 }
+
 
 /* Welcome section container */
 .welcome-section {
@@ -435,30 +441,74 @@ footer {
     transform: translateY(0);
   }
 }/* Styling for the whole climate measures section */
-
-/* Title styling */.climate-measures {
-  margin: 20px auto; /* Center the climate-measures box */
-  padding: 50px 20px;
-  background-color: transparent; /* Removed background color */
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  margin-top: 150px;
-  margin-left: 500px;
-  width: 100%;
-  max-width: 100%; /* Adjust max-width to 100% */
-  box-sizing: border-box;
+/* Styling for the sidebar options section */
+.sidebar-options {
   display: flex;
-  flex-wrap: wrap; /* Allows wrapping of the cards */
-  justify-content: center; /* Centers the cards */
-  gap: 20px; /* Space between cards */
-  overflow: auto; /* Allow scrolling if content overflows */
-  max-height: 80vh; /* Ensure the section does not take too much space on larger screens */
-  padding-bottom: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
 }
+
+/* Card styling */
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  text-align: center;
+}
+
+/* Card hover effect */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading inside cards */
+.card h3 {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
+}
+
+/* Responsive design for mobile screens */
+@media (max-width: 768px) {
+  .sidebar-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80%;
+    margin-bottom: 15px;
+  }
+}
+
+
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .climate-measures {
+    margin-top: 20px;
+    padding: 30px 15px;
+    margin-left: 0; /* Reset left margin for mobile */
+    max-width: 100%;
+    box-shadow: none; /* Remove the shadow for mobile */
+    flex-direction: column; /* Stack items vertically on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .climate-measures {
+    padding: 20px 10px; /* Adjust padding for very small screens */
+  }
+}
+
+
 
 /* Styling for each measure card */
 .measure-card {
